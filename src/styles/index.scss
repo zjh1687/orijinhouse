@@ -1,0 +1,11 @@
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply bg-gray-100 text-gray-950 leading-normal m-0;
+}
