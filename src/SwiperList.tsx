@@ -12,6 +12,7 @@ const Dimmed = styled.div`
 
 function SwiperList() {
   const [currentTranslate, setCurrentTranslate] = useState<number>(0);
+  // const [mousedegree, setMousedegree] = useState<number>(0);
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const swiperbgEl = useRef<SwiperClass | null>(null);
@@ -22,6 +23,15 @@ function SwiperList() {
       swiperbgEl.current.setProgress(currentTranslate);
     }
   }, [currentTranslate]);
+
+  // useEffect(() => {
+  //   if (wrapperRef.current) {
+  //     wrapperRef.current.addEventListener('mousemove', (e) => {
+  //       console.log(e.clientX, e.clientY);
+  //       setMousedegree();
+  //     });
+  //   }
+  // }, []);
 
   return (
     <div
@@ -41,7 +51,7 @@ function SwiperList() {
           <Dimmed />
           <video
             className="absolute w-full h-screen top-0 left-0 object-cover"
-            src="/1.mp4"
+            src="/11.mp4"
             autoPlay
             muted
             playsInline
@@ -52,7 +62,7 @@ function SwiperList() {
           <Dimmed />
           <video
             className="absolute w-full h-screen top-0 left-0 object-cover"
-            src="/2.mp4"
+            src="/22.mp4"
             autoPlay
             muted
             playsInline
@@ -63,7 +73,7 @@ function SwiperList() {
           <Dimmed />
           <video
             className="absolute w-full h-screen top-0 left-0 object-cover"
-            src="/3.mp4"
+            src="/33.mp4"
             autoPlay
             muted
             playsInline
@@ -74,7 +84,7 @@ function SwiperList() {
           <Dimmed />
           <video
             className="absolute w-full h-screen top-0 left-0 object-cover"
-            src="/4.mp4"
+            src="/44.mp4"
             autoPlay
             muted
             playsInline
@@ -102,28 +112,28 @@ function SwiperList() {
       >
         <SwiperSlide>
           <div className="w-full h-full flex items-center justify-center">
-            <div className="w-[750px] h-[900px] bg-black">
+            <div className="aspect-[0.8/1] h-[50vh] bg-black">
               <img className="w-full h-full" src="/1.png" />
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="w-full h-screen flex items-center justify-center">
-            <div className="w-[750px] h-[900px] bg-black">
+            <div className="aspect-[0.8/1] h-[50vh] bg-black">
               <img className="w-full h-full" src="/2.png" />
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="w-full h-screen flex items-center justify-center">
-            <div className="w-[750px] h-[900px] bg-black">
+            <div className="aspect-[0.8/1] h-[50vh] bg-black">
               <img className="w-full h-full" src="/3.png" />
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="w-full h-screen flex items-center justify-center">
-            <div className="w-[750px] h-[900px] bg-black">
+            <div className="aspect-[0.8/1] h-[50vh] bg-black">
               <img className="w-full h-full" src="/4.png" />
             </div>
           </div>
