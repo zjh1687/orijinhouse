@@ -3,15 +3,22 @@ import { createBrowserRouter } from 'react-router-dom';
 
 const App = React.lazy(() => import('../App'));
 const SwiperList = React.lazy(() => import('../SwiperList'));
+const Landing = React.lazy(() => import('../Landing'));
 
 const router = createBrowserRouter([
   {
     path: '',
     element: <App />,
-  },
-  {
-    path: '/travisscott',
-    element: <SwiperList />,
+    children: [
+      {
+        path: '/',
+        element: <Landing />,
+      },
+      {
+        path: '/travisscott',
+        element: <SwiperList />,
+      },
+    ],
   },
 ]);
 
