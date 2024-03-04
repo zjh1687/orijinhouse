@@ -6,6 +6,7 @@ import { EffectCoverflow, EffectFade } from 'swiper';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useIsDevice } from './hooks/device';
+import { Link } from 'react-router-dom';
 
 const Dimmed = styled.div`
   ${tw`absolute w-full h-screen top-0 bg-black/60 z-10`}
@@ -13,6 +14,10 @@ const Dimmed = styled.div`
 
 const ImgWrapper = styled.div`
   ${tw`aspect-square h-[50vh] mobile-lg:h-[30vh]`}
+`;
+
+const ImgSlideWrapper = styled.div`
+  ${tw`w-full h-screen flex items-center justify-center`}
 `;
 
 function SwiperList() {
@@ -120,32 +125,34 @@ function SwiperList() {
         onProgress={(swiper) => setCurrentTranslate(swiper.progress)}
       >
         <SwiperSlide>
-          <div className="w-full h-full flex items-center justify-center">
+          <ImgSlideWrapper>
             <ImgWrapper>
-              <img className="w-full h-full" src="/1.webp" />
+              <Link to={'/itemlist'}>
+                <img className="w-full h-full" src="/1.webp" />
+              </Link>
             </ImgWrapper>
-          </div>
+          </ImgSlideWrapper>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="w-full h-screen flex items-center justify-center">
+          <ImgSlideWrapper>
             <ImgWrapper>
               <img className="w-full h-full" src="/2.webp" />
             </ImgWrapper>
-          </div>
+          </ImgSlideWrapper>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="w-full h-screen flex items-center justify-center">
+          <ImgSlideWrapper>
             <ImgWrapper>
               <img className="w-full h-full" src="/3.webp" />
             </ImgWrapper>
-          </div>
+          </ImgSlideWrapper>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="w-full h-screen flex items-center justify-center">
+          <ImgSlideWrapper>
             <ImgWrapper>
               <img className="w-full h-full" src="/4.webp" />
             </ImgWrapper>
-          </div>
+          </ImgSlideWrapper>
         </SwiperSlide>
       </Swiper>
     </div>

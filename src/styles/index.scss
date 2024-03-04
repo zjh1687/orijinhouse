@@ -9,3 +9,27 @@ html,
 body {
   @apply bg-gray-100 text-gray-950 leading-normal m-0;
 }
+
+.loading {
+  @apply w-screen h-screen bg-black/70;
+  @apply fixed top-0 left-0;
+  @apply inline-flex items-center justify-center;
+  @apply z-[1009];
+
+  .loader {
+    @apply w-12 h-12 inline-block;
+    @apply rounded-full box-border;
+    border-top: 3px solid #fff;
+    border-right: 3px solid transparent;
+    animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
