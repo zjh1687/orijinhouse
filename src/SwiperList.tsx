@@ -5,9 +5,14 @@ import { Swiper as SwiperClass } from 'swiper/types';
 import { EffectCoverflow, EffectFade } from 'swiper';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { useIsDevice } from './hooks/device';
 
 const Dimmed = styled.div`
   ${tw`absolute w-full h-screen top-0 bg-black/60 z-10`}
+`;
+
+const ImgWrapper = styled.div`
+  ${tw`aspect-square h-[50vh] mobile-lg:h-[30vh]`}
 `;
 
 function SwiperList() {
@@ -17,6 +22,10 @@ function SwiperList() {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const swiperbgEl = useRef<SwiperClass | null>(null);
   const swiperEl = useRef<SwiperClass | null>(null);
+
+  const { isMobileLg } = useIsDevice();
+
+  const imgSlidesPerView = isMobileLg ? 1.1 : 1.4;
 
   useEffect(() => {
     if (swiperbgEl.current) {
@@ -95,7 +104,7 @@ function SwiperList() {
       <Swiper
         className="absolute w-full h-full"
         modules={[EffectCoverflow]}
-        slidesPerView={1.4}
+        slidesPerView={imgSlidesPerView}
         effect="coverflow"
         speed={1000}
         slidesPerGroup={1}
@@ -112,30 +121,30 @@ function SwiperList() {
       >
         <SwiperSlide>
           <div className="w-full h-full flex items-center justify-center">
-            <div className="aspect-[0.8/1] h-[50vh] bg-black">
-              <img className="w-full h-full" src="/1.png" />
-            </div>
+            <ImgWrapper>
+              <img className="w-full h-full" src="/1.webp" />
+            </ImgWrapper>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="w-full h-screen flex items-center justify-center">
-            <div className="aspect-[0.8/1] h-[50vh] bg-black">
-              <img className="w-full h-full" src="/2.png" />
-            </div>
+            <ImgWrapper>
+              <img className="w-full h-full" src="/2.webp" />
+            </ImgWrapper>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="w-full h-screen flex items-center justify-center">
-            <div className="aspect-[0.8/1] h-[50vh] bg-black">
-              <img className="w-full h-full" src="/3.png" />
-            </div>
+            <ImgWrapper>
+              <img className="w-full h-full" src="/3.webp" />
+            </ImgWrapper>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="w-full h-screen flex items-center justify-center">
-            <div className="aspect-[0.8/1] h-[50vh] bg-black">
-              <img className="w-full h-full" src="/4.png" />
-            </div>
+            <ImgWrapper>
+              <img className="w-full h-full" src="/4.webp" />
+            </ImgWrapper>
           </div>
         </SwiperSlide>
       </Swiper>
