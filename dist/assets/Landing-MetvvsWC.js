@@ -1,0 +1,1 @@
+import{j as e}from"./index-MYSOFn3g.js";function t(){return e.jsx("div",{className:"text-[100px] w-screen h-screen overflow-hidden",children:e.jsx("iframe",{className:"aspect-video m-0",src:"https://my.spline.design/elegantbeautyofdarkaesthetics-0652af07349e1533a815ee2c4db6055f/",width:"100%",height:"100%"})})}export{t as default};
