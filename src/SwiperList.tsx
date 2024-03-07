@@ -6,19 +6,39 @@ import { EffectCoverflow, EffectFade } from 'swiper';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useIsDevice } from './hooks/device';
-import { Link } from 'react-router-dom';
 
 const Dimmed = styled.div`
   ${tw`absolute w-full h-screen top-0 bg-black/60 z-10`}
 `;
 
 const ImgWrapper = styled.div`
-  ${tw`aspect-square h-[50vh] mobile-lg:h-[30vh]`}
+  ${tw`aspect-square h-[50vh] relative mobile-lg:h-[30vh]`}
 `;
 
 const ImgSlideWrapper = styled.div`
   ${tw`w-full h-screen flex items-center justify-center`}
+
+  transition: all 0.1s;
 `;
+const ImgFilter = styled.div`
+  ${tw`z-10`}
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    314deg,
+    transparent 40%,
+    rgba(255, 219, 112, 0.8) 45%,
+    rgba(132, 50, 255, 0.6) 50%,
+    transparent 54%
+  );
+  filter: brightness(1.1) opacity(0.8);
+  mix-blend-mode: color-dodge;
+  background-size: 150% 150%;
+  background-position: 100%;
+`;
+
+const imgList = [1, 2, 3, 4];
 
 function SwiperList() {
   const [currentTranslate, setCurrentTranslate] = useState<number>(0);
@@ -27,6 +47,8 @@ function SwiperList() {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const swiperbgEl = useRef<SwiperClass | null>(null);
   const swiperEl = useRef<SwiperClass | null>(null);
+  const imgEl = useRef<HTMLDivElement[] | null[]>([]);
+  const imgFilterEl = useRef<HTMLDivElement[] | null[]>([]);
 
   const { isMobileLg } = useIsDevice();
 
@@ -38,14 +60,34 @@ function SwiperList() {
     }
   }, [currentTranslate]);
 
-  // useEffect(() => {
-  //   if (wrapperRef.current) {
-  //     wrapperRef.current.addEventListener('mousemove', (e) => {
-  //       console.log(e.clientX, e.clientY);
-  //       setMousedegree();
-  //     });
-  //   }
-  // }, []);
+  const imgMouseEvent = (e: MouseEvent) => {
+    if (imgEl.current && imgFilterEl.current) {
+      const x = e.clientX;
+      const y = e.clientY;
+      const rotateX = (20 / window.innerHeight) * y - 10;
+      const rotateY = (-20 / window.innerWidth) * x + 10;
+      imgEl.current.forEach((e) => {
+        e.setAttribute(
+          'style',
+          `transform : perspective(50vh) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+        );
+      });
+
+      imgFilterEl.current.forEach((e) => {
+        e.setAttribute('style', `background-position : ${x / 5 + y / 5}%`);
+      });
+    }
+  };
+
+  // perspective(3000px)
+  useEffect(() => {
+    if (wrapperRef.current) {
+      wrapperRef.current.addEventListener('mousemove', (e) => imgMouseEvent(e));
+    }
+    return () => {
+      wrapperRef.current.addEventListener('mousemove', (e) => imgMouseEvent(e));
+    };
+  }, []);
 
   return (
     <div
@@ -124,16 +166,20 @@ function SwiperList() {
         onSwiper={(swiper: SwiperClass) => (swiperEl.current = swiper)}
         onProgress={(swiper) => setCurrentTranslate(swiper.progress)}
       >
-        <SwiperSlide>
-          <ImgSlideWrapper>
-            <ImgWrapper>
-              <Link to={'/itemlist'}>
-                <img className="w-full h-full" src="/1.webp" />
-              </Link>
-            </ImgWrapper>
-          </ImgSlideWrapper>
-        </SwiperSlide>
-        <SwiperSlide>
+        {imgList.map((el, idx) => {
+          return (
+            <SwiperSlide key={idx}>
+              <ImgSlideWrapper>
+                <ImgWrapper ref={(e) => (imgEl.current[idx] = e)}>
+                  <ImgFilter ref={(e) => (imgFilterEl.current[idx] = e)} />
+                  <img className="w-full h-full testimg" src={`/${el}.webp`} />
+                </ImgWrapper>
+              </ImgSlideWrapper>
+            </SwiperSlide>
+          );
+        })}
+
+        {/* <SwiperSlide>
           <ImgSlideWrapper>
             <ImgWrapper>
               <img className="w-full h-full" src="/2.webp" />
@@ -153,7 +199,7 @@ function SwiperList() {
               <img className="w-full h-full" src="/4.webp" />
             </ImgWrapper>
           </ImgSlideWrapper>
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
     </div>
   );
