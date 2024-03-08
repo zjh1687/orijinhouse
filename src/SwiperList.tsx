@@ -38,11 +38,31 @@ const ImgFilter = styled.div`
   background-position: 100%;
 `;
 
-const imgList = [1, 2, 3, 4];
+const imgList = [
+  {
+    key: 'orijinhouse',
+    img: '/orijinhouselogo.png',
+  },
+  {
+    key: 'ourlife',
+    img: '/ourlife.png',
+  },
+  {
+    key: 'orijinapple',
+    img: '/orijinapple.png',
+  },
+  {
+    key: 'orientalfilmblue',
+    img: '/orientalfilmblue.png',
+  },
+  {
+    key: 'orientalfilmpuple',
+    img: '/orientalfilmpuple.png',
+  },
+];
 
 function SwiperList() {
   const [currentTranslate, setCurrentTranslate] = useState<number>(0);
-  // const [mousedegree, setMousedegree] = useState<number>(0);
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const swiperbgEl = useRef<SwiperClass | null>(null);
@@ -147,6 +167,17 @@ function SwiperList() {
             loop
           />
         </SwiperSlide>
+        <SwiperSlide>
+          <Dimmed />
+          <video
+            className="absolute w-full h-screen top-0 left-0 object-cover"
+            src="/44.mp4"
+            autoPlay
+            muted
+            playsInline
+            loop
+          />
+        </SwiperSlide>
       </Swiper>
       <Swiper
         className="absolute w-full h-full"
@@ -168,11 +199,11 @@ function SwiperList() {
       >
         {imgList.map((el, idx) => {
           return (
-            <SwiperSlide key={idx}>
+            <SwiperSlide key={el.key}>
               <ImgSlideWrapper>
                 <ImgWrapper ref={(e) => (imgEl.current[idx] = e)}>
                   <ImgFilter ref={(e) => (imgFilterEl.current[idx] = e)} />
-                  <img className="w-full h-full testimg" src={`/${el}.webp`} />
+                  <img className="w-full h-full testimg" src={el.img} />
                 </ImgWrapper>
               </ImgSlideWrapper>
             </SwiperSlide>

@@ -13,11 +13,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Landing />,
+        element: <SwiperList />,
       },
       {
         path: '/travisscott',
-        element: <SwiperList />,
+        element: <Landing />,
       },
       {
         path: '/itemlist',
