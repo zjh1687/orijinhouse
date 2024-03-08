@@ -11,8 +11,9 @@ const Dimmed = styled.div`
   ${tw`absolute w-full h-screen top-0 bg-black/60 z-10`}
 `;
 
-const ImgWrapper = styled.div`
-  ${tw`aspect-square h-[50vh] relative mobile-lg:h-[30vh]`}
+const ImgWrapper = styled.div<{ fullSize?: boolean }>`
+  ${tw`aspect-square h-[30dvh] relative mobile-lg:h-[30vh]`}
+  ${(props) => props.fullSize && tw`!aspect-auto`}
 `;
 
 const ImgSlideWrapper = styled.div`
@@ -42,22 +43,27 @@ const imgList = [
   {
     key: 'orijinhouse',
     img: '/orijinhouselogo.png',
+    fullSize: false,
   },
   {
     key: 'ourlife',
     img: '/ourlife.png',
+    fullSize: false,
   },
   {
     key: 'orijinapple',
     img: '/orijinapple.png',
+    fullSize: false,
   },
   {
     key: 'orientalfilmblue',
     img: '/orientalfilmblue.png',
+    fullSize: false,
   },
   {
     key: 'orientalfilmpuple',
     img: '/orientalfilmpuple.png',
+    fullSize: true,
   },
 ];
 
@@ -201,7 +207,10 @@ function SwiperList() {
           return (
             <SwiperSlide key={el.key}>
               <ImgSlideWrapper>
-                <ImgWrapper ref={(e) => (imgEl.current[idx] = e)}>
+                <ImgWrapper
+                  ref={(e) => (imgEl.current[idx] = e)}
+                  fullSize={el.fullSize}
+                >
                   <ImgFilter ref={(e) => (imgFilterEl.current[idx] = e)} />
                   <img className="w-full h-full testimg" src={el.img} />
                 </ImgWrapper>
