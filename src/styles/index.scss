@@ -8,6 +8,46 @@
 html,
 body {
   @apply bg-gray-100 text-gray-950 leading-normal m-0;
+  animation: fadein 888ms ease;
+  -moz-animation: fadein 888ms ease; /* Firefox */
+  -webkit-animation: fadein 888ms ease; /* Safari and  Chrome */
+  -o-animation: fadein 888ms ease; /* Opera */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
+  /*Firefox*/
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  /*SafariandChrome*/
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein {
+  /*Opera*/
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .loading {

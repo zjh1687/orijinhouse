@@ -1,9 +1,10 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import Layout from '../layout/Layout';
 
 const App = React.lazy(() => import('../App'));
 const SwiperList = React.lazy(() => import('../SwiperList'));
-const Landing = React.lazy(() => import('../Landing'));
+const Spline = React.lazy(() => import('../Spline'));
 const ItemList = React.lazy(() => import('../ItemList'));
 
 const router = createBrowserRouter([
@@ -13,11 +14,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <SwiperList />,
+        element: (
+          <Layout>
+            <SwiperList />
+          </Layout>
+        ),
       },
       {
-        path: '/travisscott',
-        element: <Landing />,
+        path: '/kupper',
+        element: <Spline />,
       },
       {
         path: '/itemlist',
